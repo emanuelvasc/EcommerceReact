@@ -38,26 +38,25 @@ export default class Cart extends Component {
     const { email, password, address, city, zip } = this.state;
     const errors = {};
 
-    // Validations
+    // Validações
     if (!email.includes("@")) {
-      errors.email = "Please enter a valid email address";
+      errors.email = "Por favor, insira um email válido";
     }
     if (password.length < 8) {
-      errors.password = "Password must be at least 8 characters long";
+      errors.password = "A senha deve ter pelo menos 8 caracteres";
     }
     if (address.trim() === "") {
-      errors.address = "Address is required";
+      errors.address = "Endereço é obrigatório";
     }
     if (city.trim() === "") {
-      errors.city = "City is required";
+      errors.city = "Cidade é obrigatória";
     }
     if (zip.trim() === "") {
-      errors.zip = "Zip code is required";
+      errors.zip = "CEP é obrigatório";
     }
 
-    // If no errors, proceed
     if (Object.keys(errors).length === 0) {
-      console.log("Form is valid. Proceed with checkout.");
+      console.log("Formulário válido. Prosseguir com a finalização da compra.");
     } else {
       this.setState({ errors });
     }
@@ -70,7 +69,8 @@ export default class Cart extends Component {
     return (
       <div className="cart-container">
         <div className="cart-items">
-          <h2>Your Cart</h2>
+          <h2>Seu Carrinho</h2>
+
           {cart.length > 0 ? (
             cart.map((product) => (
               <CartProductCard
@@ -82,12 +82,15 @@ export default class Cart extends Component {
               />
             ))
           ) : (
-            <p style={{fontSize:"1.5rem",text:"gray"}}>Your cart is empty</p>
+            <p style={{ fontSize: "1.5rem", color: "gray" }}>
+              Seu carrinho está vazio
+            </p>
           )}
         </div>
 
         <div className="checkout-section">
-          <h3>Total Price: ${totalPrice.toFixed(2)}</h3>
+          <h3>Preço Total: R$ {totalPrice.toFixed(2)}</h3>
+
           <form onSubmit={this.handleSubmit} className="checkout-form">
             <div className="form-group">
               <label htmlFor="email">Email</label>
@@ -103,7 +106,7 @@ export default class Cart extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Senha</label>
               <input
                 type="password"
                 id="password"
@@ -112,11 +115,13 @@ export default class Cart extends Component {
                 onChange={this.handleInputChange}
                 className={`form-input ${errors.password ? "input-error" : ""}`}
               />
-              {errors.password && <p className="error-message">{errors.password}</p>}
+              {errors.password && (
+                <p className="error-message">{errors.password}</p>
+              )}
             </div>
 
             <div className="form-group">
-              <label htmlFor="address">Address</label>
+              <label htmlFor="address">Endereço</label>
               <input
                 type="text"
                 id="address"
@@ -124,13 +129,15 @@ export default class Cart extends Component {
                 value={this.state.address}
                 onChange={this.handleInputChange}
                 className={`form-input ${errors.address ? "input-error" : ""}`}
-                placeholder="Enter your address"
+                placeholder="Digite seu endereço"
               />
-              {errors.address && <p className="error-message">{errors.address}</p>}
+              {errors.address && (
+                <p className="error-message">{errors.address}</p>
+              )}
             </div>
 
             <div className="form-group">
-              <label htmlFor="city">City</label>
+              <label htmlFor="city">Cidade</label>
               <input
                 type="text"
                 id="city"
@@ -143,7 +150,7 @@ export default class Cart extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="zip">Zip</label>
+              <label htmlFor="zip">CEP</label>
               <input
                 type="text"
                 id="zip"
@@ -156,7 +163,7 @@ export default class Cart extends Component {
             </div>
 
             <button type="submit" className="checkout-btn">
-              Checkout
+              Finalizar Compra
             </button>
           </form>
         </div>
