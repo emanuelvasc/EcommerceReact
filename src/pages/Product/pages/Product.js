@@ -18,6 +18,7 @@ class Product extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { productReducer } = this.props;
+
     if (
       productReducer.status !== prevProps.productReducer.status &&
       productReducer.status === "reject"
@@ -54,8 +55,11 @@ class Product extends React.Component {
         {!isLoading ? (
           <div>
             {showAlert && (
-              <div className="alert alert-success alert-dismissible fade show" role="alert">
-                Product added to cart
+              <div
+                className="alert alert-success alert-dismissible fade show"
+                role="alert"
+              >
+                Produto adicionado ao carrinho
                 <button
                   type="button"
                   onClick={() => this.setState({ showAlert: false })}
@@ -65,19 +69,23 @@ class Product extends React.Component {
                 </button>
               </div>
             )}
+
             <div className="productsWrapper">
               {products.map((product) => (
                 <div className="custom-card" key={product.id}>
                   <img src={product.image} alt="" />
+
                   <h5 className="product-title mt-3">
                     {product.title.slice(0, 20)}
                   </h5>
-                  <h6>{product.price} Rs</h6>
+
+                  <h6>R$ {product.price}</h6>
+
                   <button
                     className="btn"
                     onClick={() => this.handleAddToCart(product)}
                   >
-                    Add To Cart
+                    Adicionar ao Carrinho
                   </button>
                 </div>
               ))}
@@ -86,7 +94,7 @@ class Product extends React.Component {
         ) : (
           <div className="d-flex justify-content-center">
             <div className="spinner-border" role="status">
-              <span className="sr-only">Loading...</span>
+              <span className="sr-only">Carregando...</span>
             </div>
           </div>
         )}

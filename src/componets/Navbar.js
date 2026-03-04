@@ -29,16 +29,19 @@ class Navbar extends Component {
         }}
       >
         <span className="logo">
-          <h3>HappyKart 🛍️</h3>
+          <h3>Loja Feliz 🛍️</h3>
         </span>
+
         <div>
           <Link to="/" className="navLink">
-            Home
+            Início
           </Link>
+
           <Link to="/cart" className="navLink">
-            Cart
+            Carrinho
           </Link>
-          <span className="cartCount"> Cart items: {cartCount}</span>
+
+          <span className="cartCount">Itens no carrinho: {cartCount}</span>
         </div>
       </div>
     );

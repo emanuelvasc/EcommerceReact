@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const TotalPrice = () => {
-  return (
-    <div>TotalPrice</div>
-  )
-}
+  return <div>Preço Total</div>;
+};
 
-export default TotalPrice
+export default TotalPrice;
